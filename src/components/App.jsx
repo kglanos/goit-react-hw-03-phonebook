@@ -17,23 +17,27 @@ export class App extends Component {
     number: '',
   };
 
-  addContactOnSubmit = ({ name, number }) => {
-    const { contacts } = this.state;
+  addContactOnSubmit = (name, number) => {
     const contact = {
       id: nanoid(),
       name,
       number,
     };
 
-    if (contacts.find(contact => contact.name === name)) {
+    const { contacts } = this.state;
+    const isContactExist = contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase(),
+    );
+
+    if (isContactExist) {
       alert(`${name} is already in contacts`);
       return;
     }
 
-    this.setState(({ contacts }) => ({
-      contacts: [contact, ...contacts],
+    this.setState(prevState => ({
+      contacts: [...prevState.contacts, contact],
     }));
-  };
+  }
   
   deleteContact = contactId => {
     this.setState(prevState => ({
@@ -57,6 +61,7 @@ export class App extends Component {
     const visibleContacts = this.getVisibleContacts();
     return (
       <>
+      <div className="container">
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.addContactOnSubmit} />
         <h2>Contacts</h2>
@@ -64,6 +69,7 @@ export class App extends Component {
         <ContactList
           contacts={visibleContacts}
           onDeleteContact={this.deleteContact} />
+      </div>
       </>
     );
   }

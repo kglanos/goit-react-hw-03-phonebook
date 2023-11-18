@@ -42,11 +42,12 @@ export class ContactForm extends Component {
                     type="text"
                     name="name"
                     value={name}
-                    pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                    pattern="[A-Za-zÀ-ÖØ-öø-ÿ]+[\s]?[A-Za-zÀ-ÖØ-öø-ÿ]+"
                     title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
                     required
                     onChange={this.handleChange}
                     id={this.nameId}
+                    placeholder="Adrian Smith"
                 /></label>
                 <label htmlFor={this.numberId}>Number
                 <input
@@ -54,15 +55,16 @@ export class ContactForm extends Component {
                     name="number"
                     value={number}
                     type="tel"
-                    pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                    pattern="\+\d{2}\s\d{3}-\d{3}-\d{3}"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required
                     onChange={this.handleChange}
                     id={this.numberId}
-                /></label>
+                    placeholder="+48 123-456-789"
+                /></label><div className={css.divider}>
                 <button className={css.button} type="submit">
                     Add contact
-                </button>
+                </button></div>
             </form>
         );
     };
