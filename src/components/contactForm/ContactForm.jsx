@@ -55,7 +55,7 @@ export class ContactForm extends Component {
                     name="number"
                     value={number}
                     type="tel"
-                    pattern="\+\d{2}\s\d{3}-\d{3}-\d{3}"
+                    pattern="(\+?\d{1,4}[-.\s]?)?(\(?\d{1,3}?\)?[-.\s]?)?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                     required
                     onChange={this.handleChange}
